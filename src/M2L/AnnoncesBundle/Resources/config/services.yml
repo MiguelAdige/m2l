@@ -1,0 +1,4 @@
+services:
+#    m2_l_annonces.example:
+#        class: M2L\AnnoncesBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

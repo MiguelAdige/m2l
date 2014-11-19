@@ -3050,6 +3050,8 @@ class appDevDebugProjectContainer extends Container
         $instance->addPath('E:\\Profil\\Documents\\Dropbox\\Sites\\m2l\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\TwigBundle/Resources/views', 'Twig');
         $instance->addPath('E:\\Profil\\Documents\\Dropbox\\Sites\\m2l\\vendor\\symfony\\swiftmailer-bundle\\Symfony\\Bundle\\SwiftmailerBundle/Resources/views', 'Swiftmailer');
         $instance->addPath('E:\\Profil\\Documents\\Dropbox\\Sites\\m2l\\vendor\\doctrine\\doctrine-bundle\\Doctrine\\Bundle\\DoctrineBundle/Resources/views', 'Doctrine');
+        $instance->addPath('E:\\Profil\\Documents\\Dropbox\\Sites\\m2l\\src\\M2L\\UserBundle/Resources/views', 'M2LUser');
+        $instance->addPath('E:\\Profil\\Documents\\Dropbox\\Sites\\m2l\\src\\M2L\\AnnoncesBundle/Resources/views', 'M2LAnnonces');
         $instance->addPath('E:\\Profil\\Documents\\Dropbox\\Sites\\m2l\\src\\Acme\\DemoBundle/Resources/views', 'AcmeDemo');
         $instance->addPath('E:\\Profil\\Documents\\Dropbox\\Sites\\m2l\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\WebProfilerBundle/Resources/views', 'WebProfiler');
         $instance->addPath('E:\\Profil\\Documents\\Dropbox\\Sites\\m2l\\vendor\\sensio\\distribution-bundle\\Sensio\\Bundle\\DistributionBundle/Resources/views', 'SensioDistribution');
@@ -3537,6 +3539,8 @@ class appDevDebugProjectContainer extends Container
                 'AsseticBundle' => 'Symfony\\Bundle\\AsseticBundle\\AsseticBundle',
                 'DoctrineBundle' => 'Doctrine\\Bundle\\DoctrineBundle\\DoctrineBundle',
                 'SensioFrameworkExtraBundle' => 'Sensio\\Bundle\\FrameworkExtraBundle\\SensioFrameworkExtraBundle',
+                'M2LUserBundle' => 'M2L\\UserBundle\\M2LUserBundle',
+                'M2LAnnoncesBundle' => 'M2L\\AnnoncesBundle\\M2LAnnoncesBundle',
                 'AcmeDemoBundle' => 'Acme\\DemoBundle\\AcmeDemoBundle',
                 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle',
                 'SensioDistributionBundle' => 'Sensio\\Bundle\\DistributionBundle\\SensioDistributionBundle',

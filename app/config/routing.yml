@@ -1,0 +1,12 @@
+m2_l_ligue:
+    resource: "@M2LLigueBundle/Resources/config/routing.yml"
+    prefix:   /
+
+m2_l_annonces:
+    resource: "@M2LAnnoncesBundle/Resources/config/routing.yml"
+    prefix:   /
+
+m2_l_user:
+    resource: "@M2LUserBundle/Resources/config/routing.yml"
+    prefix:   /
+

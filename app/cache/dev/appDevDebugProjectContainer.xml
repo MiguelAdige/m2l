@@ -16,6 +16,8 @@
       <parameter key="AsseticBundle">Symfony\Bundle\AsseticBundle\AsseticBundle</parameter>
       <parameter key="DoctrineBundle">Doctrine\Bundle\DoctrineBundle\DoctrineBundle</parameter>
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
+      <parameter key="M2LUserBundle">M2L\UserBundle\M2LUserBundle</parameter>
+      <parameter key="M2LAnnoncesBundle">M2L\AnnoncesBundle\M2LAnnoncesBundle</parameter>
       <parameter key="AcmeDemoBundle">Acme\DemoBundle\AcmeDemoBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -2826,6 +2828,14 @@
       <call method="addPath">
         <argument>E:\Profil\Documents\Dropbox\Sites\m2l\vendor\doctrine\doctrine-bundle\Doctrine\Bundle\DoctrineBundle/Resources/views</argument>
         <argument>Doctrine</argument>
+      </call>
+      <call method="addPath">
+        <argument>E:\Profil\Documents\Dropbox\Sites\m2l\src\M2L\UserBundle/Resources/views</argument>
+        <argument>M2LUser</argument>
+      </call>
+      <call method="addPath">
+        <argument>E:\Profil\Documents\Dropbox\Sites\m2l\src\M2L\AnnoncesBundle/Resources/views</argument>
+        <argument>M2LAnnonces</argument>
       </call>
       <call method="addPath">
         <argument>E:\Profil\Documents\Dropbox\Sites\m2l\src\Acme\DemoBundle/Resources/views</argument>

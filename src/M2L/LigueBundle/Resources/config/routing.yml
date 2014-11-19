@@ -1,0 +1,3 @@
+m2_l_ligue_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: M2LLigueBundle:Default:index }

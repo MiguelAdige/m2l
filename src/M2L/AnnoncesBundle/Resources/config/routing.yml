@@ -1,0 +1,3 @@
+m2_l_annonces_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: M2LAnnoncesBundle:Default:index }

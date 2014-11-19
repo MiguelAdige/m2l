@@ -1,0 +1,4 @@
+services:
+#    m2_l_ligue.example:
+#        class: M2L\LigueBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
