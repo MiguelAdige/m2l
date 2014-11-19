@@ -1,3 +1,8 @@
 e626c5,::1,GET,http://localhost/m2l/web/app_dev.php/,1416394124,
 262628,::1,GET,http://localhost/m2l/web/app_dev.php/_configurator/,1416398372,
 fc87cb,::1,GET,http://localhost/m2l/web/app_dev.php/_configurator/step/0,1416398375,
+94635e,::1,POST,http://localhost/m2l/web/app_dev.php/_configurator/step/0,1416399579,
+bc2ec8,::1,GET,http://localhost/m2l/web/app_dev.php/_configurator/step/1,1416399583,
+f9f6e9,::1,POST,http://localhost/m2l/web/app_dev.php/_configurator/step/1,1416399595,
+9cadcc,::1,GET,http://localhost/m2l/web/app_dev.php/_configurator/final,1416399598,
+a589d9,::1,GET,http://localhost/m2l/web/app_dev.php/,1416399602,
