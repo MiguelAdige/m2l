@@ -1,13 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}M2L{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     </head>
     <body>
+        <header>
+            <div class="top-area">
+                <h1 class="logo left"><a href="/Freebed/"><img src="{{ asset('img/logo.PNG') }}" alt="M2L"></a></h1>
+                <div class="clear"></div>
+            </div>
+
+            <nav class="clear">
+                <ul id="menu">
+                    <li><a href="?p=accueil">Accueil</a></li>
+                    <li><a href="?p=locations">Recherche de partenaire</a></li>
+                    
+                    <li><a href="?p=inscription">Inscription</a></li>
+                    <li><a href="?p=connexion">Connexion</a></li>
+                    
+                    <li><a href="?p=ajout-bien">Ajouter une annonce</a></li>
+                    <li><a href="?p=edit-profil">Modifier mon profil</a></li>
+                    <li><a href="?p=listing">Mes annonces</a></li>
+                    <li><a href="?p=logout">Déconnexion</a></li>
+                    
+                </ul>
+            </nav>
+            <div class="clear"></div>
+    </header>
+
+<section id="content">
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
+        </section>
+
+<footer>
+<p>Copyright ©2014 FreeBed. Tous droits réservés.</p>
+</footer>
     </body>
 </html>

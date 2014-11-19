@@ -122,6 +122,28 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // m2_l_ligue_homepage
+        if (rtrim($pathinfo, '/') === '') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'm2_l_ligue_homepage');
+            }
+
+            return array (  '_controller' => 'M2L\\LigueBundle\\Controller\\DefaultController::indexAction',  '_route' => 'm2_l_ligue_homepage',);
+        }
+
+        if (0 === strpos($pathinfo, '/hello')) {
+            // m2_l_annonces_homepage
+            if (preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'm2_l_annonces_homepage')), array (  '_controller' => 'M2L\\AnnoncesBundle\\Controller\\DefaultController::indexAction',));
+            }
+
+            // m2_l_user_homepage
+            if (preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'm2_l_user_homepage')), array (  '_controller' => 'M2L\\UserBundle\\Controller\\DefaultController::indexAction',));
+            }
+
+        }
+
         // _welcome
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {

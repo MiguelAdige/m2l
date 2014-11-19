@@ -18,6 +18,7 @@
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
       <parameter key="M2LUserBundle">M2L\UserBundle\M2LUserBundle</parameter>
       <parameter key="M2LAnnoncesBundle">M2L\AnnoncesBundle\M2LAnnoncesBundle</parameter>
+      <parameter key="M2LLigueBundle">M2L\LigueBundle\M2LLigueBundle</parameter>
       <parameter key="AcmeDemoBundle">Acme\DemoBundle\AcmeDemoBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -2373,7 +2374,9 @@
       <argument type="service">
         <service class="Doctrine\ORM\Configuration" public="false">
           <call method="setEntityNamespaces">
-            <argument type="collection"/>
+            <argument type="collection">
+              <argument key="M2LUserBundle">M2L\UserBundle\Entity</argument>
+            </argument>
           </call>
           <call method="setMetadataCacheImpl">
             <argument type="service">
@@ -2404,7 +2407,19 @@
           </call>
           <call method="setMetadataDriverImpl">
             <argument type="service">
-              <service class="Doctrine\ORM\Mapping\Driver\DriverChain" public="false"/>
+              <service class="Doctrine\ORM\Mapping\Driver\DriverChain" public="false">
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+                      <argument type="service" id="annotation_reader"/>
+                      <argument type="collection">
+                        <argument>E:\Profil\Documents\Dropbox\Sites\m2l\src\M2L\UserBundle\Entity</argument>
+                      </argument>
+                    </service>
+                  </argument>
+                  <argument>M2L\UserBundle\Entity</argument>
+                </call>
+              </service>
             </argument>
           </call>
           <call method="setProxyDir">
@@ -2836,6 +2851,10 @@
       <call method="addPath">
         <argument>E:\Profil\Documents\Dropbox\Sites\m2l\src\M2L\AnnoncesBundle/Resources/views</argument>
         <argument>M2LAnnonces</argument>
+      </call>
+      <call method="addPath">
+        <argument>E:\Profil\Documents\Dropbox\Sites\m2l\src\M2L\LigueBundle/Resources/views</argument>
+        <argument>M2LLigue</argument>
       </call>
       <call method="addPath">
         <argument>E:\Profil\Documents\Dropbox\Sites\m2l\src\Acme\DemoBundle/Resources/views</argument>
