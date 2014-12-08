@@ -3,6 +3,8 @@
 namespace M2L\AnnoncesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use M2L\UserBundle\Entity\user;
+use M2L\LigueBundle\Entity\ligue;
 
 /**
  * annonces
@@ -56,6 +58,22 @@ class annonces
      */
     private $sport;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="M2L\UserBundle\Entity\User")
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="M2L\LigueBundle\Entity\ligue")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $ligue;
+
+
+    public function __construct()
+    {
+        $this->date = new \DateTime();
+    }
 
     /**
      * Get id
@@ -180,5 +198,29 @@ class annonces
     public function getSport()
     {
         return $this->sport;
+    }
+
+    public function setUser(Advert $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    public function setLigue(Advert $ligue)
+    {
+        $this->ligue = $ligue;
+
+        return $this;
+    }
+
+    public function getLigue()
+    {
+        return $this->ligue;
     }
 }

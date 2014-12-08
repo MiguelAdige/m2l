@@ -3,6 +3,8 @@
 namespace M2L\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use M2L\UserBundle\Entity\user;
 
 /**
  * messagerie
@@ -45,9 +47,9 @@ class messagerie
     /**
      * @var string
      *
-     * @ORM\Column(name="msqg", type="text")
+     * @ORM\Column(name="msg", type="text")
      */
-    private $msqg;
+    private $msg;
 
     /**
      * @var \DateTime
@@ -63,6 +65,16 @@ class messagerie
      */
     private $lu;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="messagerie")
+     **/
+    private $user;
+
+    public function __construct()
+    {
+        $this->date = new \DateTime();
+        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -144,26 +156,26 @@ class messagerie
     }
 
     /**
-     * Set msqg
+     * Set msg
      *
-     * @param string $msqg
+     * @param string $msg
      * @return messagerie
      */
-    public function setMsqg($msqg)
+    public function setMsqg($msg)
     {
-        $this->msqg = $msqg;
+        $this->msg = $msg;
     
         return $this;
     }
 
     /**
-     * Get msqg
+     * Get msg
      *
      * @return string 
      */
     public function getMsqg()
     {
-        return $this->msqg;
+        return $this->msg;
     }
 
     /**

@@ -2376,6 +2376,8 @@
           <call method="setEntityNamespaces">
             <argument type="collection">
               <argument key="M2LUserBundle">M2L\UserBundle\Entity</argument>
+              <argument key="M2LAnnoncesBundle">M2L\AnnoncesBundle\Entity</argument>
+              <argument key="M2LLigueBundle">M2L\LigueBundle\Entity</argument>
             </argument>
           </call>
           <call method="setMetadataCacheImpl">
@@ -2414,10 +2416,38 @@
                       <argument type="service" id="annotation_reader"/>
                       <argument type="collection">
                         <argument>E:\Profil\Documents\Dropbox\Sites\m2l\src\M2L\UserBundle\Entity</argument>
+                        <argument>E:\Profil\Documents\Dropbox\Sites\m2l\src\M2L\AnnoncesBundle\Entity</argument>
+                        <argument>E:\Profil\Documents\Dropbox\Sites\m2l\src\M2L\LigueBundle\Entity</argument>
                       </argument>
                     </service>
                   </argument>
                   <argument>M2L\UserBundle\Entity</argument>
+                </call>
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+                      <argument type="service" id="annotation_reader"/>
+                      <argument type="collection">
+                        <argument>E:\Profil\Documents\Dropbox\Sites\m2l\src\M2L\UserBundle\Entity</argument>
+                        <argument>E:\Profil\Documents\Dropbox\Sites\m2l\src\M2L\AnnoncesBundle\Entity</argument>
+                        <argument>E:\Profil\Documents\Dropbox\Sites\m2l\src\M2L\LigueBundle\Entity</argument>
+                      </argument>
+                    </service>
+                  </argument>
+                  <argument>M2L\AnnoncesBundle\Entity</argument>
+                </call>
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+                      <argument type="service" id="annotation_reader"/>
+                      <argument type="collection">
+                        <argument>E:\Profil\Documents\Dropbox\Sites\m2l\src\M2L\UserBundle\Entity</argument>
+                        <argument>E:\Profil\Documents\Dropbox\Sites\m2l\src\M2L\AnnoncesBundle\Entity</argument>
+                        <argument>E:\Profil\Documents\Dropbox\Sites\m2l\src\M2L\LigueBundle\Entity</argument>
+                      </argument>
+                    </service>
+                  </argument>
+                  <argument>M2L\LigueBundle\Entity</argument>
                 </call>
               </service>
             </argument>

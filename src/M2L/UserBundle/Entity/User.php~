@@ -312,37 +312,4 @@ class User
     {
         return $this->avatar;
     }
-
-    /**
-     * Add messagerie
-     *
-     * @param \M2L\UserBundle\Entity\messagerie $messagerie
-     * @return User
-     */
-    public function addMessagerie(\M2L\UserBundle\Entity\messagerie $messagerie)
-    {
-        $this->messagerie[] = $messagerie;
-    
-        return $this;
-    }
-
-    /**
-     * Remove messagerie
-     *
-     * @param \M2L\UserBundle\Entity\messagerie $messagerie
-     */
-    public function removeMessagerie(\M2L\UserBundle\Entity\messagerie $messagerie)
-    {
-        $this->messagerie->removeElement($messagerie);
-    }
-
-    /**
-     * Get messagerie
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getMessagerie()
-    {
-        return $this->messagerie;
-    }
 }
