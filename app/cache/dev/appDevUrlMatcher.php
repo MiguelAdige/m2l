@@ -131,15 +131,25 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'M2L\\LigueBundle\\Controller\\DefaultController::indexAction',  '_route' => 'm2_l_ligue_homepage',);
         }
 
-        if (0 === strpos($pathinfo, '/hello')) {
-            // m2_l_annonces_homepage
-            if (preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'm2_l_annonces_homepage')), array (  '_controller' => 'M2L\\AnnoncesBundle\\Controller\\DefaultController::indexAction',));
+        // m2_l_annonces_homepage
+        if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'm2_l_annonces_homepage')), array (  '_controller' => 'M2L\\AnnoncesBundle\\Controller\\DefaultController::indexAction',));
+        }
+
+        // m2l_inscription
+        if ($pathinfo === '/inscription') {
+            return array (  '_controller' => 'M2L\\UserBundle\\Controller\\UserController::inscriptionAction',  '_route' => 'm2l_inscription',);
+        }
+
+        if (0 === strpos($pathinfo, '/login')) {
+            // login
+            if ($pathinfo === '/login') {
+                return array (  '_controller' => 'M2L\\UserBundle\\Controller\\UserController::connexionAction',  '_route' => 'login',);
             }
 
-            // m2_l_user_homepage
-            if (preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'm2_l_user_homepage')), array (  '_controller' => 'M2L\\UserBundle\\Controller\\DefaultController::indexAction',));
+            // login_check
+            if ($pathinfo === '/login_check') {
+                return array('_route' => 'login_check');
             }
 
         }

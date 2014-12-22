@@ -87,6 +87,13 @@ class User
     private $avatar;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=50)
+     */
+    private $email;
+
+    /**
      * @ORM\ManyToMany(targetEntity="M2L\UserBundle\Entity\messagerie", cascade={"persist"}, inversedBy="User")
      * @ORM\JoinTable(name="user_messagerie")
      **/
@@ -311,5 +318,38 @@ class User
     public function getAvatar()
     {
         return $this->avatar;
+    }
+
+    /**
+     * Add messagerie
+     *
+     * @param \M2L\UserBundle\Entity\messagerie $messagerie
+     * @return User
+     */
+    public function addMessagerie(\M2L\UserBundle\Entity\messagerie $messagerie)
+    {
+        $this->messagerie[] = $messagerie;
+    
+        return $this;
+    }
+
+    /**
+     * Remove messagerie
+     *
+     * @param \M2L\UserBundle\Entity\messagerie $messagerie
+     */
+    public function removeMessagerie(\M2L\UserBundle\Entity\messagerie $messagerie)
+    {
+        $this->messagerie->removeElement($messagerie);
+    }
+
+    /**
+     * Get messagerie
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMessagerie()
+    {
+        return $this->messagerie;
     }
 }

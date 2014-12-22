@@ -75,16 +75,23 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="avatar", type="string", length=200)
+     * @ORM\Column(name="avatar", type="string", length=200, nullable=true)
      */
     private $avatar;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=50)
+     */
+    private $email;
 
     /**
      * @ORM\ManyToMany(targetEntity="M2L\UserBundle\Entity\messagerie", cascade={"persist"}, inversedBy="User")
@@ -344,5 +351,28 @@ class User
     public function getMessagerie()
     {
         return $this->messagerie;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return User
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 }

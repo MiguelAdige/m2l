@@ -10,7 +10,7 @@
     <body>
         <header>
             <div class="top-area">
-                <h1 class="logo left"><a href="/Freebed/"><img src="{{ asset('img/logo.PNG') }}" alt="M2L"></a></h1>
+                <h1 class="logo left"><a href=""><img src="{{ asset('img/logo.PNG') }}" alt="M2L"></a></h1>
                 <div class="clear"></div>
             </div>
 
@@ -19,8 +19,8 @@
                     <li><a href="?p=accueil">Accueil</a></li>
                     <li><a href="?p=locations">Recherche de partenaire</a></li>
                     
-                    <li><a href="?p=inscription">Inscription</a></li>
-                    <li><a href="?p=connexion">Connexion</a></li>
+                    <li><a href="{{ path('m2l_inscription') }}">Inscription</a></li>
+                    <li><a href="{{ path('login') }}">Connexion</a></li>
                     
                     <li><a href="?p=ajout-bien">Ajouter une annonce</a></li>
                     <li><a href="?p=edit-profil">Modifier mon profil</a></li>
@@ -38,7 +38,7 @@
         </section>
 
 <footer>
-<p>Copyright ©2014 FreeBed. Tous droits réservés.</p>
+<p>Copyright ©2014 M2L. Tous droits réservés.</p>
 </footer>
     </body>
 </html>

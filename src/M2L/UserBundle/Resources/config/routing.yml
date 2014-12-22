@@ -1,3 +1,10 @@
-m2_l_user_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: M2LUserBundle:Default:index }
+m2l_inscription:
+    path:   /inscription
+    defaults: { _controller: M2LUserBundle:User:inscription }
+
+login:
+    pattern:   /login
+    defaults:  { _controller: M2LUserBundle:User:connexion }
+
+login_check:
+    pattern:   /login_check
