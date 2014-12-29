@@ -4,7 +4,7 @@ m2l_inscription:
 
 login:
     pattern:   /login
-    defaults:  { _controller: M2LUserBundle:User:connexion }
+    defaults:  { _controller: M2LUserBundle:User:login }
 
 login_check:
     pattern:   /login_check

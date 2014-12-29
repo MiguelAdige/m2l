@@ -1,6 +1,6 @@
 <?php
 
-namespace M2L\UserBundle\Form;
+namespace M2L\UserBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,7 +16,7 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('pseudo', 'text', array('label' => 'Pseudo'))
+            ->add('username', 'text', array('label' => 'Pseudo'))
             ->add('nom', 'text')
             ->add('prenom', 'text')
             ->add('email', 'email')

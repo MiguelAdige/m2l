@@ -1,6 +1,6 @@
 M2L\UserBundle\Entity\User:
     properties:
-        pseudo:
+        username:
             - NotBlank: ~
 
         nom:

@@ -15,13 +15,9 @@ use M2L\UserBundle\Form\Type\UserType;
 
 class UserController extends Controller
 {
-    public function connexionAction(Request $request)
+    public function loginAction()
     {
-    	$user = new User();
-    	$form = $this->get('form.factory')->create(new LoginType(), $user);
-    	
-    	$form->handleRequest($request);
-
+    	$request = $this->getRequest();
         $session = $request->getSession();
 
         if($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)){
@@ -31,7 +27,7 @@ class UserController extends Controller
             );
         }
 
-        return $this->render('M2LUserBundle:User:index.html.twig', array('form' => $form->createView()));
+        return $this->render('M2LUserBundle:User:index.html.twig', array('pseudo' => $session->get(SecurityContext::LAST_USERNAME)));
     }
 
     public function inscriptionAction(Request $request)
@@ -45,7 +41,7 @@ class UserController extends Controller
     		$factory = $this->get('security.encoder_factory');
 
 			$encoder = $factory->getEncoder($user);
-			$password = $encoder->encodePassword($user->getPassword(), "fk,vfnbfd83".date('hms'));
+			$password = $encoder->encodePassword($user->getPassword(), $user->getSalt());
 			$user->setPassword($password);
 
     		$doctrine = $this->getDoctrine();
@@ -53,9 +49,9 @@ class UserController extends Controller
 
     		// Vérification de Pseudo déjà existant
     		$repo = $em->getRepository('M2LUserBundle:User');
-			if(!$repo->findByPseudo($user->getPseudo())){
+			if(!$repo->findByUsername($user->getUsername())){
 				// Vérification de mails déjà existant
-				if(!$repo->findByPseudo($user->getEmail())){
+				if(!$repo->findByUsername($user->getEmail())){
 					$em->persist($user);
 		    		if($em->flush()){
 		    			$this->get('session')->getFlashBag()->add('notice', 'Inscription validé');

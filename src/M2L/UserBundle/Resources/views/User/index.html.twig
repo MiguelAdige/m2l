@@ -9,6 +9,16 @@
 
 	{% endfor %}
 
-   {{ form(form) }}
+   <form method="post" action="{{ path('login_check') }}">
+            <div>
+                <input type="text" id="_username" name="_username" required="required" placeholder="Pseudo" value="{{ pseudo }}" />
+            </div>
+            <div>
+                <input type="password" id="_password" name="_password" required="required" placeholder="Mot de passe" />
+            </div>
+            <div>
+                <button type="submit" id="Se connecter">Se connecter</button>
+            </div>
+        </form>
 
 {% endblock %}

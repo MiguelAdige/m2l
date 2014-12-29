@@ -5,6 +5,8 @@ namespace M2L\UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use M2L\UserBundle\Entity\messagerie;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Symfony\Component\Security\Core\User\EquatableInterface;
 
 /**
  * User
@@ -12,7 +14,7 @@ use M2L\UserBundle\Entity\messagerie;
  * @ORM\Table()
  * @ORM\Entity
  */
-class User
+class User implements AdvancedUserInterface, \Serializable
 {
     /**
      * @var integer
@@ -26,9 +28,9 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="pseudo", type="string", length=50)
+     * @ORM\Column(name="username", type="string", length=50)
      */
-    private $pseudo;
+    private $username;
 
     /**
      * @var string
@@ -94,13 +96,19 @@ class User
     private $email;
 
     /**
-     * @ORM\ManyToMany(targetEntity="M2L\UserBundle\Entity\messagerie", cascade={"persist"}, inversedBy="User")
-     * @ORM\JoinTable(name="user_messagerie")
-     **/
-    private $messagerie;
+     * @ORM\Column(type="string", length=255)
+     */
+    private $salt;
 
-    public function __construct() {
-        $this->messagerie = new \Doctrine\Common\Collections\ArrayCollection();
+    /**
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
+
+    public function __construct()
+    {
+        $this->salt = md5(uniqid(null, true));
+        $this->isActive = true;
     }
 
     /**
@@ -114,26 +122,26 @@ class User
     }
 
     /**
-     * Set pseudo
+     * Set username
      *
-     * @param string $pseudo
+     * @param string $username
      * @return User
      */
-    public function setPseudo($pseudo)
+    public function setUsername($username)
     {
-        $this->pseudo = $pseudo;
+        $this->username = $username;
     
         return $this;
     }
 
     /**
-     * Get pseudo
+     * Get username
      *
      * @return string 
      */
-    public function getPseudo()
+    public function getUsername()
     {
-        return $this->pseudo;
+        return $this->username;
     }
 
     /**
@@ -321,37 +329,14 @@ class User
     }
 
     /**
-     * Add messagerie
-     *
-     * @param \M2L\UserBundle\Entity\messagerie $messagerie
-     * @return User
-     */
-    public function addMessagerie(\M2L\UserBundle\Entity\messagerie $messagerie)
-    {
-        $this->messagerie[] = $messagerie;
-    
-        return $this;
-    }
-
-    /**
-     * Remove messagerie
-     *
-     * @param \M2L\UserBundle\Entity\messagerie $messagerie
-     */
-    public function removeMessagerie(\M2L\UserBundle\Entity\messagerie $messagerie)
-    {
-        $this->messagerie->removeElement($messagerie);
-    }
-
-    /**
      * Get messagerie
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getMessagerie()
+    /*public function getMessagerie()
     {
         return $this->messagerie;
-    }
+    }*/
 
     /**
      * Set email
@@ -374,5 +359,119 @@ class User
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * Set salt
+     *
+     * @param string $salt
+     * @return Users
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+
+        return $this;
+    }
+
+    /**
+     * Get salt
+     *
+     * @return string 
+     */
+    public function getSalt()
+    {
+        return $this->salt;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setRoles($roles)
+    {
+        $this->groups_id = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+
+    public function eraseCredentials()
+    {
+    }
+
+   /**
+     * @see \Serializable::serialize()
+     */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+        ));
+    }
+
+    /**
+     * @see \Serializable::unserialize()
+     */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+        ) = unserialize($serialized);
+    }
+
+    public function isEqualTo(UserIntefrace $user)
+    {
+        return $this->username === $user->getUsername();
+    }
+
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     * @return User
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean 
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
     }
 }

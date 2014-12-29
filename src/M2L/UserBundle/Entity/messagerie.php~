@@ -65,10 +65,15 @@ class messagerie
      */
     private $lu;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="\M2L\UserBundle\Entity\User", mappedBy="messagerie")
+     **/
+   /* private $user;
 
     public function __construct()
     {
         $this->date = new \DateTime();
+        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
     }*/
 
     /**
@@ -242,27 +247,4 @@ class messagerie
         $this->messagerie->removeElement($messagerie);
     }
 
-
-    /**
-     * Set msg
-     *
-     * @param string $msg
-     * @return messagerie
-     */
-    public function setMsg($msg)
-    {
-        $this->msg = $msg;
-    
-        return $this;
-    }
-
-    /**
-     * Get msg
-     *
-     * @return string 
-     */
-    public function getMsg()
-    {
-        return $this->msg;
-    }
 }

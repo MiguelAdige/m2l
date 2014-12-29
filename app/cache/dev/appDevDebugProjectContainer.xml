@@ -1714,7 +1714,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>5497f66ec293b</argument>
+            <argument>54a132ec29952</argument>
           </service>
         </argument>
       </argument>
@@ -1817,7 +1817,7 @@
     <service id="security.user.provider.concrete.main" class="Symfony\Bridge\Doctrine\Security\User\EntityUserProvider" public="false">
       <argument type="service" id="doctrine"/>
       <argument>M2LUserBundle:User</argument>
-      <argument>pseudo</argument>
+      <argument>username</argument>
       <argument>null</argument>
     </service>
     <service id="security.firewall.map.context.dev" class="Symfony\Bundle\SecurityBundle\Security\FirewallContext">
@@ -1969,7 +1969,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>5497f66ec293b</argument>
+            <argument>54a132ec29952</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
