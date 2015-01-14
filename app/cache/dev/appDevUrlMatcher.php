@@ -131,15 +131,28 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'M2L\\LigueBundle\\Controller\\DefaultController::indexAction',  '_route' => 'm2_l_ligue_homepage',);
         }
 
-        if (0 === strpos($pathinfo, '/annonces')) {
-            // m2l_annonces_home
-            if ($pathinfo === '/annonces') {
-                return array (  '_controller' => 'M2L\\AnnoncesBundle\\Controller\\AnnoncesController::indexAction',  '_route' => 'm2l_annonces_home',);
+        if (0 === strpos($pathinfo, '/an')) {
+            if (0 === strpos($pathinfo, '/annonces')) {
+                // m2l_annonces_home
+                if ($pathinfo === '/annonces') {
+                    return array (  '_controller' => 'M2L\\AnnoncesBundle\\Controller\\AnnoncesController::indexAction',  '_route' => 'm2l_annonces_home',);
+                }
+
+                // m2l_annonces_view
+                if (preg_match('#^/annonces/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'm2l_annonces_view')), array (  '_controller' => 'M2L\\AnnoncesBundle\\Controller\\AnnoncesController::viewAction',));
+                }
+
             }
 
-            // m2l_annonces_view
-            if (0 === strpos($pathinfo, '/annonces/view') && preg_match('#^/annonces/view/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'm2l_annonces_view')), array (  '_controller' => 'M2L\\AnnoncesBundle\\Controller\\AnnoncesController::viewAction',));
+            // m2l_annonces_add
+            if ($pathinfo === '/anonnces/add') {
+                return array (  '_controller' => 'M2L\\AnnoncesBundle\\Controller\\AnnoncesController::addAction',  '_route' => 'm2l_annonces_add',);
+            }
+
+            // m2l_annonces_post
+            if ($pathinfo === '/annonces/myPost') {
+                return array (  '_controller' => 'M2L\\AnnoncesBundle\\Controller\\AnnoncesController::addAction',  '_route' => 'm2l_annonces_post',);
             }
 
         }
@@ -160,6 +173,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array('_route' => 'login_check');
             }
 
+        }
+
+        // m2l_profil_edit
+        if ($pathinfo === '/profil/edit') {
+            return array (  '_controller' => 'M2L\\UserBundle\\Controller\\UserController::editAction',  '_route' => 'm2l_profil_edit',);
         }
 
         // _welcome

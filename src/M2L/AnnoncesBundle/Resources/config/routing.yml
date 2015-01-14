@@ -3,5 +3,13 @@ m2l_annonces_home:
     defaults: { _controller: M2LAnnoncesBundle:Annonces:index }
 
 m2l_annonces_view:
-    path: /annonces/view/{id}
+    path: /annonces/{id}
     defaults: { _controller: M2LAnnoncesBundle:Annonces:view }
+
+m2l_annonces_add:
+    path: /anonnces/add
+    defaults: { _controller: M2LAnnoncesBundle:Annonces:add }
+
+m2l_annonces_post:
+    path: /annonces/myPost
+    defaults: { _controller: M2LAnnoncesBundle:Annonces:add }

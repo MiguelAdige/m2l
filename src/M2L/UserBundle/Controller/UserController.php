@@ -68,4 +68,9 @@ class UserController extends Controller
 
         return $this->render('M2LUserBundle:User:inscription.html.twig', array('form' => $form->createView()));
     }
+
+    public function editAction() {
+        return $this->render("M2LUserBundle:User:editProfil.html.twig");
+    }
+    
 }

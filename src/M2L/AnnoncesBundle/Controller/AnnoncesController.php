@@ -13,8 +13,12 @@ class AnnoncesController extends Controller {
 
 	public function viewAction() {
 
-		return $this->render("M2LAnnoncesBundle:Annonces:viewAnnonces.html.twig", array());
+		return $this->render("M2LAnnoncesBundle:Annonces:viewAnnonce.html.twig", array());
 
+	}
+
+	public function addAction() {
+		return $this->render("M2LAnnoncesBundle:Annonces:addAnnonce.html.twig", array());
 	}
 
 }
