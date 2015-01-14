@@ -11,5 +11,5 @@ m2l_annonces_add:
     defaults: { _controller: M2LAnnoncesBundle:Annonces:add }
 
 m2l_annonces_post:
-    path: /annonces/myPost
+    path: /annonces/mes-annonces
     defaults: { _controller: M2LAnnoncesBundle:Annonces:add }

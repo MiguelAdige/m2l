@@ -122,6 +122,15 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // messagerie_homepage
+        if (rtrim($pathinfo, '/') === '/messagerie') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'messagerie_homepage');
+            }
+
+            return array (  '_controller' => 'M2L\\MessagerieBundle\\Controller\\MessagerieController::indexAction',  '_route' => 'messagerie_homepage',);
+        }
+
         // m2_l_ligue_homepage
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {
@@ -151,7 +160,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             }
 
             // m2l_annonces_post
-            if ($pathinfo === '/annonces/myPost') {
+            if ($pathinfo === '/annonces/mes-annonces') {
                 return array (  '_controller' => 'M2L\\AnnoncesBundle\\Controller\\AnnoncesController::addAction',  '_route' => 'm2l_annonces_post',);
             }
 
