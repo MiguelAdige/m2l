@@ -131,9 +131,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'M2L\\LigueBundle\\Controller\\DefaultController::indexAction',  '_route' => 'm2_l_ligue_homepage',);
         }
 
-        // m2_l_annonces_homepage
-        if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'm2_l_annonces_homepage')), array (  '_controller' => 'M2L\\AnnoncesBundle\\Controller\\DefaultController::indexAction',));
+        if (0 === strpos($pathinfo, '/annonces')) {
+            // m2l_annonces_home
+            if ($pathinfo === '/annonces') {
+                return array (  '_controller' => 'M2L\\AnnoncesBundle\\Controller\\AnnoncesController::indexAction',  '_route' => 'm2l_annonces_home',);
+            }
+
+            // m2l_annonces_view
+            if (0 === strpos($pathinfo, '/annonces/view') && preg_match('#^/annonces/view/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'm2l_annonces_view')), array (  '_controller' => 'M2L\\AnnoncesBundle\\Controller\\AnnoncesController::viewAction',));
+            }
+
         }
 
         // m2l_inscription

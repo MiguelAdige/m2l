@@ -1,3 +1,7 @@
-m2_l_annonces_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: M2LAnnoncesBundle:Default:index }
+m2l_annonces_home:
+    path: /annonces
+    defaults: { _controller: M2LAnnoncesBundle:Annonces:index }
+
+m2l_annonces_view:
+    path: /annonces/view/{id}
+    defaults: { _controller: M2LAnnoncesBundle:Annonces:view }
