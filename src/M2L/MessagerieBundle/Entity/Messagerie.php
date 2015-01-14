@@ -167,7 +167,7 @@ class Messagerie
 
     /**
      * Get date
-     *
+     *s
      * @return \DateTime 
      */
     public function getDate()

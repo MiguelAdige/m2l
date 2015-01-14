@@ -1,3 +1,27 @@
 messagerie_homepage:
     path:     /messagerie/
-    defaults: { _controller: MessagerieBundle:Messagerie:index }
+    defaults: { _controller: MessagerieBundle:Messagerie:index, boite: 1 }
+
+messagerie_new_msg:
+    path:   /messagerie/new/
+    defaults: { _controller: MessagerieBundle:Messagerie:NewMessage }
+
+messagerie_new_msg_user:
+    path: /messagerie/new/{user}/
+    defaults: { _controller: MessagerieBundle:Messagerie:NewMessageUser }
+
+messagerie_inbox:
+    path: /messagerie/inbox
+    defaults: { _controller: MessagerieBundle:Messagerie:index, boite: 1 }
+
+messagerie_send:
+    path: /messagerie/send
+    defaults: { _controller: MessagerieBundle:Messagerie:index, boite: 2 }
+
+messagerie_delete:
+    path: /messagerie/delete/{id}
+    defaults: { _controller: MessagerieBundle:Messagerie:delete }
+
+messagerie_view:
+    path: /messagerie/view/{id}
+    defaults: { _controller: MessagerieBundle:Messagerie:view }
