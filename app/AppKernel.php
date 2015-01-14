@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new M2L\UserBundle\M2LUserBundle(),
             new M2L\AnnoncesBundle\M2LAnnoncesBundle(),
             new M2L\LigueBundle\M2LLigueBundle(),
+            new M2L\MessagerieBundle\MessagerieBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

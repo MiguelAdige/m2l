@@ -1,0 +1,3 @@
+messagerie_homepage:
+    path:     /messagerie/
+    defaults: { _controller: MessagerieBundle:Messagerie:index }

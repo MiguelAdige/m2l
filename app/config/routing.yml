@@ -1,3 +1,7 @@
+messagerie:
+    resource: "@MessagerieBundle/Resources/config/routing.yml"
+    prefix:   /
+
 m2_l_ligue:
     resource: "@M2LLigueBundle/Resources/config/routing.yml"
     prefix:   /
