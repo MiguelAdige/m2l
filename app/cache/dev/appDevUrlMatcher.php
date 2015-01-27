@@ -122,13 +122,57 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // messagerie_homepage
-        if (rtrim($pathinfo, '/') === '/messagerie') {
-            if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'messagerie_homepage');
+        if (0 === strpos($pathinfo, '/messagerie')) {
+            // messagerie_homepage
+            if (rtrim($pathinfo, '/') === '/messagerie') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'messagerie_homepage');
+                }
+
+                return array (  '_controller' => 'M2L\\MessagerieBundle\\Controller\\MessagerieController::indexAction',  'boite' => 1,  '_route' => 'messagerie_homepage',);
             }
 
-            return array (  '_controller' => 'M2L\\MessagerieBundle\\Controller\\MessagerieController::indexAction',  '_route' => 'messagerie_homepage',);
+            if (0 === strpos($pathinfo, '/messagerie/new')) {
+                // messagerie_new_msg
+                if (rtrim($pathinfo, '/') === '/messagerie/new') {
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'messagerie_new_msg');
+                    }
+
+                    return array (  '_controller' => 'M2L\\MessagerieBundle\\Controller\\MessagerieController::NewMessageAction',  '_route' => 'messagerie_new_msg',);
+                }
+
+                // messagerie_new_msg_user
+                if (preg_match('#^/messagerie/new/(?P<user>[^/]++)/?$#s', $pathinfo, $matches)) {
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'messagerie_new_msg_user');
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'messagerie_new_msg_user')), array (  '_controller' => 'M2L\\MessagerieBundle\\Controller\\MessagerieController::NewMessageUserAction',));
+                }
+
+            }
+
+            // messagerie_inbox
+            if ($pathinfo === '/messagerie/inbox') {
+                return array (  '_controller' => 'M2L\\MessagerieBundle\\Controller\\MessagerieController::indexAction',  'boite' => 1,  '_route' => 'messagerie_inbox',);
+            }
+
+            // messagerie_send
+            if ($pathinfo === '/messagerie/send') {
+                return array (  '_controller' => 'M2L\\MessagerieBundle\\Controller\\MessagerieController::indexAction',  'boite' => 2,  '_route' => 'messagerie_send',);
+            }
+
+            // messagerie_delete
+            if (0 === strpos($pathinfo, '/messagerie/delete') && preg_match('#^/messagerie/delete/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'messagerie_delete')), array (  '_controller' => 'M2L\\MessagerieBundle\\Controller\\MessagerieController::deleteAction',));
+            }
+
+            // messagerie_view
+            if (0 === strpos($pathinfo, '/messagerie/view') && preg_match('#^/messagerie/view/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'messagerie_view')), array (  '_controller' => 'M2L\\MessagerieBundle\\Controller\\MessagerieController::viewAction',));
+            }
+
         }
 
         // m2_l_ligue_homepage
