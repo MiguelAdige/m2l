@@ -1,5 +1,49 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-	Liste des annonces
+	<ul id="annonces-liste">
+		<li>
+			<table>
+				<tr>
+					<td class="img-user">
+						<img src="#" alt="Avatar de l'utilisateur"><br/>
+						Nom de l'utilisateur
+					</td>
+					<td class="annonce-preview">
+						<h3><a href="{{ path('m2l_annonces_view', { 'id' : 1 }) }}">Titre annonce</a></h3>
+						<p>
+							<span>Sport</span><br/>
+							<span>Description :</span><br/>
+							Description abrégée de la recherche de partenaire
+							<span class="annonce-date">
+								JJ/MM/AAAA à H:i:s
+							</span>
+						</p>
+					</td>
+				</tr>
+			</table>
+		</ii>
+
+		<li>
+			<table>
+				<tr>
+					<td class="img-user">
+						<img src="#" alt="Avatar de l'utilisateur"><br/>
+						Nom de l'utilisateur
+					</td>
+					<td class="annonce-preview">
+						<h3>Titre annonce</h3>
+						<p>
+							<span>Sport</span><br/>
+							<span>Description :</span><br/>
+							Description abrégée de la recherche de partenaire
+							<span class="annonce-date">
+								JJ/MM/AAAA à H:i:s
+							</span>
+						</p>
+					</td>
+				</tr>
+			</table>
+		</ii>
+	</ul>
 {% endblock %}

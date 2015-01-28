@@ -1,5 +1,23 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-	
+	<div id="annonce-view">
+		<h3>Titre annonce</h3>
+		<div class="img-user">
+			<img src="#" alt="Avatar de l'utilisateur"><br/>
+			Nom de l'utilisateur
+		</div>
+		<div class="annonce-preview">
+			<p>
+				<span>Sport</span><br/>
+				<span>Ville :</span><br/>
+				<span>Date de la recherche : JJ/MM/AAAA</span><br/>
+				<span>Description :</span><br/>
+				Description abrégée de la recherche de partenaire
+				<span class="annonce-date">
+					JJ/MM/AAAA à H:i:s
+				</span>
+			</p>
+		</div>
+	</div>
 {% endblock %}

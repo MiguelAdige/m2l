@@ -197,7 +197,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 }
 
                 // m2l_annonces_view
-                if (preg_match('#^/annonces/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (preg_match('#^/annonces/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'm2l_annonces_view')), array (  '_controller' => 'M2L\\AnnoncesBundle\\Controller\\AnnoncesController::viewAction',));
                 }
 
@@ -210,7 +210,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
             // m2l_annonces_post
             if ($pathinfo === '/annonces/mes-annonces') {
-                return array (  '_controller' => 'M2L\\AnnoncesBundle\\Controller\\AnnoncesController::addAction',  '_route' => 'm2l_annonces_post',);
+                return array (  '_controller' => 'M2L\\AnnoncesBundle\\Controller\\AnnoncesController::userAnnoncesAction',  '_route' => 'm2l_annonces_post',);
             }
 
         }

@@ -5,6 +5,8 @@ m2l_annonces_home:
 m2l_annonces_view:
     path: /annonces/{id}
     defaults: { _controller: M2LAnnoncesBundle:Annonces:view }
+    requirements:
+        id: \d+
 
 m2l_annonces_add:
     path: /anonnces/add
@@ -12,4 +14,4 @@ m2l_annonces_add:
 
 m2l_annonces_post:
     path: /annonces/mes-annonces
-    defaults: { _controller: M2LAnnoncesBundle:Annonces:add }
+    defaults: { _controller: M2LAnnoncesBundle:Annonces:userAnnonces }
