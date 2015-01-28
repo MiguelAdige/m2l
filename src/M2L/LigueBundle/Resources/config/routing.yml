@@ -1,3 +1,9 @@
-m2_l_ligue_homepage:
+m2l_ligue_homepage:
     path:     /
     defaults: { _controller: M2LLigueBundle:Default:index }
+
+m2l_ligue_view:
+    path:     /ligue/{id}
+    defaults: { _controller: M2LLigueBundle:Default:view }
+    requirements:
+        id: \d+	

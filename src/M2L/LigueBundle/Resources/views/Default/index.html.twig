@@ -1,1 +1,37 @@
-Hello !
+{% extends '::base.html.twig' %}
+
+{% block body %}
+	
+	<div class="titreligue">
+		Liste des ligues
+	</div>
+	
+	<a href="{{ path('m2l_ligue_view', {"id":1 }) }}"><div class="ligue imgtennis">
+		<p class="sport">Tennis</p>
+	</div></a>
+	
+	<div class="ligue imgfoot">
+		<p class="sport">Football</p>
+	</div>
+	
+	<div class="ligue imgbasket">
+		<p class="sport">Basketball</p>
+	</div>
+	
+	<div class="ligue imgbad">
+		<p class="sport">Badminton</p>
+	</div>
+	
+	<div class="ligue imgrugby">
+		<p class="sport">Rugby</p>
+	</div>
+	
+	<div class="ligue imgvolley">
+		<p class="sport">Volley-ball</p>
+	</div>
+	
+	<div class="ligue imgbase">
+		<p class="sport">Base-ball</p>
+	</div>
+
+{% endblock %}

@@ -10,4 +10,9 @@ class DefaultController extends Controller
     {
         return $this->render('M2LLigueBundle:Default:index.html.twig', array());
     }
+	
+    public function viewAction($id)
+    {
+        return $this->render('M2LLigueBundle:Default:ligue.html.twig', array());
+    }
 }

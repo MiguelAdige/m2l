@@ -1,4 +1,4 @@
-/* Style générale */
+﻿/* Style générale */
 body{
 	font-family: sans-serif;
 	font-size: 14px;
@@ -200,6 +200,69 @@ CONTENT
 	-o-transition: all 0.5s ease;
 	-ms-transition: all 0.5s ease;
 }
+
+
+/***********
+LISTES LIGUES
+***********/
+
+.titreligue{
+	text-align:center;
+	font-size:350%;
+	margin-bottom:30px;
+	margin-top:30px;
+}
+
+.ligue{
+	border:1px solid black;
+	width:800px;
+	height:200px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:50px;
+}
+
+.imgtennis{
+	background-image:url("../img/tennis.jpg");
+	background-repeat:no-repeat;
+}
+
+.imgfoot{
+	background-image:url("../img/foot.jpg");
+	background-repeat:no-repeat;
+}
+
+.imgbasket{
+	background-image:url("../img/tennis.jpg");
+	background-repeat:no-repeat;
+}
+
+.imgbad{
+	background-image:url("../img/bad.jpg");
+	background-repeat:no-repeat;
+}
+
+.imgrugby{
+	background-image:url("../img/rugby.jpg");
+	background-repeat:no-repeat;
+}
+
+.imgvolley{
+	background-image:url("../img/volley.jpg");
+	background-repeat:no-repeat;
+}
+
+.imgbase{
+	background-image:url("../img/baseball.jpg");
+	background-repeat:no-repeat;
+}
+
+.sport{
+	font-size:250%;
+	text-align:center;
+}
+
+
 
 /*******************
 FOOTER

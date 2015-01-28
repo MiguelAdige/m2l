@@ -175,13 +175,18 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // m2_l_ligue_homepage
+        // m2l_ligue_homepage
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'm2_l_ligue_homepage');
+                return $this->redirect($pathinfo.'/', 'm2l_ligue_homepage');
             }
 
-            return array (  '_controller' => 'M2L\\LigueBundle\\Controller\\DefaultController::indexAction',  '_route' => 'm2_l_ligue_homepage',);
+            return array (  '_controller' => 'M2L\\LigueBundle\\Controller\\DefaultController::indexAction',  '_route' => 'm2l_ligue_homepage',);
+        }
+
+        // m2l_ligue_view
+        if (0 === strpos($pathinfo, '/ligue') && preg_match('#^/ligue/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'm2l_ligue_view')), array (  '_controller' => 'M2L\\LigueBundle\\Controller\\DefaultController::viewAction',));
         }
 
         if (0 === strpos($pathinfo, '/an')) {
