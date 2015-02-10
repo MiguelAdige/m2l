@@ -17,9 +17,8 @@ class annoncesType extends AbstractType
         $builder
             ->add('titre', 'text')
             ->add('description', 'textarea')
-            ->add('date', 'date')
             ->add('online', 'checkbox')
-            ->add('sport', 'checkbox')
+            ->add('sport', 'text')
             ->add('save', 'submit')
         ;
     }

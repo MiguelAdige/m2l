@@ -24,6 +24,17 @@ class AnnoncesController extends Controller {
 
 		$form = $this->get("form.factory")->create(new annoncesType(), $annonce);
 
+		if ($request->isMethod("POST")) {
+
+			$annonce->setTitre();
+			$annonce->setDescription();
+			$annonce->setSport();
+
+			return $this->redirect($this->generateUrl("m2l_annonces_view", array(
+				"id"	=>	$annonce->getId()
+				)));
+		}
+
 		return $this->render("M2LAnnoncesBundle:Annonces:addAnnonce.html.twig", array(
 			"form"	=>	$form->createView()
 			));
