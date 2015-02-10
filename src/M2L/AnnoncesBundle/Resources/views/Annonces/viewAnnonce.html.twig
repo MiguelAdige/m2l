@@ -2,22 +2,41 @@
 
 {% block body %}
 	<div id="annonce-view">
-		<h3>Titre annonce</h3>
-		<div class="img-user">
-			<img src="#" alt="Avatar de l'utilisateur"><br/>
-			Nom de l'utilisateur
-		</div>
-		<div class="annonce-preview">
-			<p>
-				<span>Sport</span><br/>
-				<span>Ville :</span><br/>
-				<span>Date de la recherche : JJ/MM/AAAA</span><br/>
-				<span>Description :</span><br/>
-				Description abrégée de la recherche de partenaire
-				<span class="annonce-date">
-					JJ/MM/AAAA à H:i:s
-				</span>
-			</p>
-		</div>
+		<table>
+			<tr>
+				<th colspan="2">
+					<h3>Titre annonce</h3>
+				</th>
+			</tr>
+			<tr>
+				<td class="img-user">
+					<div>
+						<span class="pseudo-utilisateur">Nom de l'utilisateur</span><br/>
+						<img src="#" alt="Avatar de l'utilisateur">
+					</div>
+				</td>
+				<td>
+					<div class="annonce-preview">
+						<p>
+							<span>Sport</span><br/>
+							<span>Ville :</span><br/>
+							<span>Date de la recherche : JJ/MM/AAAA</span><br/>
+							<span>Description :</span><br/>
+							Description abrégée de la recherche de partenaire
+						</p>
+						<p>
+							<a href="#">Envoyer un message</a>
+						</p>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" class="annonce-date">
+					<span>
+						JJ/MM/AAAA à H:i:s
+					</span>
+				</td>
+			</tr>
+		</table>
 	</div>
 {% endblock %}
