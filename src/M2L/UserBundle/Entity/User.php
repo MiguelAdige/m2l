@@ -427,7 +427,7 @@ class User implements AdvancedUserInterface, \Serializable
         ) = unserialize($serialized);
     }
 
-    public function isEqualTo(UserIntefrace $user)
+    public function isEqualTo(UserInterface $user)
     {
         return $this->username === $user->getUsername();
     }

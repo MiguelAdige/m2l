@@ -4,6 +4,7 @@ namespace M2L\AnnoncesBundle\Controller;
 
 use M2L\AnnoncesBundle\Entity\annonces;
 use M2L\AnnoncesBundle\Form\annoncesType;
+use M2L\UserBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -24,12 +25,15 @@ class AnnoncesController extends Controller {
 
 		$annonce = $em->getRepository("M2LAnnoncesBundle:annonces")->find($id);
 
+		$user = $annonce->getUser();
+
 		if (null === $annonce) {
 	    	throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
 	    }
 
 		return $this->render("M2LAnnoncesBundle:Annonces:viewAnnonce.html.twig", array(
-			"annonce"	=>	$annonce
+			"annonce"	=>	$annonce,
+			"user"		=>	$user
 			));
 	}
 
