@@ -10,13 +10,27 @@ use Symfony\Component\HttpFoundation\Request;
 class AnnoncesController extends Controller {
 
 	public function indexAction(){
+		$em = $this->getDoctrine()->getManager();
 
-		return $this->render("M2LAnnoncesBundle:Annonces:index.html.twig", array());
+		$listeAnnonces = $em->getRepository("M2LAnnoncesBundle:annonces")->findAll();
+
+		return $this->render("M2LAnnoncesBundle:Annonces:index.html.twig", array(
+			"listeAnnonces"	=>	$listeAnnonces
+			));
 	}
 
-	public function viewAction() {
+	public function viewAction($id) {
+		$em = $this->getDoctrine()->getManager();
 
-		return $this->render("M2LAnnoncesBundle:Annonces:viewAnnonce.html.twig", array());
+		$annonce = $em->getRepository("M2LAnnoncesBundle:annonces")->find($id);
+
+		if (null === $annonce) {
+	    	throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
+	    }
+
+		return $this->render("M2LAnnoncesBundle:Annonces:viewAnnonce.html.twig", array(
+			"annonce"	=>	$annonce
+			));
 	}
 
 	public function addAction(Request $request) {

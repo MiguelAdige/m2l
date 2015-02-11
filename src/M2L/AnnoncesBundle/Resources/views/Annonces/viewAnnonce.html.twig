@@ -5,7 +5,7 @@
 		<table>
 			<tr>
 				<th colspan="2">
-					<h3>Titre annonce</h3>
+					<h3>{{ annonce.titre }}</h3>
 				</th>
 			</tr>
 			<tr>
@@ -18,10 +18,10 @@
 				<td>
 					<div class="annonce-preview">
 						<p>
-							<span>Sport</span><br/>
+							<span>Ligue</span><br/>
 							<span>Ville :</span><br/>
 							<span>Description :</span><br/>
-							Description abrégée de la recherche de partenaire
+							{{ annonce.description }}
 						</p>
 						<p>
 							<a href="#">Envoyer un message</a>
@@ -32,7 +32,7 @@
 			<tr>
 				<td colspan="2" class="annonce-date">
 					<span>
-						JJ/MM/AAAA à H:i:s
+						{{ annonce.date | date("d/m/Y") }}
 					</span>
 				</td>
 			</tr>
