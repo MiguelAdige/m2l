@@ -5,6 +5,7 @@ namespace M2L\AnnoncesBundle\Controller;
 use M2L\AnnoncesBundle\Entity\annonces;
 use M2L\AnnoncesBundle\Form\annoncesType;
 use M2L\UserBundle\Entity\User;
+use M2L\LigueBundle\Entity\ligue;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -13,8 +14,11 @@ class AnnoncesController extends Controller {
 	public function indexAction(){
 		$em = $this->getDoctrine()->getManager();
 
-		$listeAnnonces = $em->getRepository("M2LAnnoncesBundle:annonces")->findAll();
+		$users = $em->getRepository("M2LUserBundle:User")->findAll();
+		$ligues = $em->getRepository("M2LLigueBundle:ligue")->findAll();
 
+		$listeAnnonces = $em->getRepository("M2LAnnoncesBundle:annonces")->findBy(array("user"	=>	$users, "ligue"	=>	$ligues));
+		
 		return $this->render("M2LAnnoncesBundle:Annonces:index.html.twig", array(
 			"listeAnnonces"	=>	$listeAnnonces
 			));
@@ -26,6 +30,7 @@ class AnnoncesController extends Controller {
 		$annonce = $em->getRepository("M2LAnnoncesBundle:annonces")->find($id);
 
 		$user = $annonce->getUser();
+		$ligue = $annonce->getLigue();
 
 		if (null === $annonce) {
 	    	throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
@@ -33,7 +38,8 @@ class AnnoncesController extends Controller {
 
 		return $this->render("M2LAnnoncesBundle:Annonces:viewAnnonce.html.twig", array(
 			"annonce"	=>	$annonce,
-			"user"		=>	$user
+			"user"		=>	$user,
+			"ligue"		=>	$ligue
 			));
 	}
 

@@ -427,11 +427,6 @@ class User implements AdvancedUserInterface, \Serializable
         ) = unserialize($serialized);
     }
 
-    public function isEqualTo(UserInterface $user)
-    {
-        return $this->username === $user->getUsername();
-    }
-
     public function isAccountNonExpired()
     {
         return true;

@@ -2,18 +2,20 @@
 
 {% block body %}
 	<ul id="annonces-liste">
-		{% for annonce in listeAnnonces %}
+		{% for annonce in listeAnnonces | reverse %}
 			<li>
 				<table>
 					<tr>
 						<td class="img-user">
 							<img src="#" alt="Avatar de l'utilisateur"><br/>
-							<span class="pseudo-utilisateur">user</span>
+							<span class="pseudo-utilisateur">
+								{{ annonce.user.username }}
+							</span>
 						</td>
 						<td class="annonce-preview">
 							<h3><a href="{{ path('m2l_annonces_view', { 'id' : annonce.id }) }}">{{ annonce.titre }}</a></h3>
 							<p>
-								<span>Ligue</span><br/>
+								<span>{{ annonce.ligue.nom }}</span><br/>
 								<span>Description :</span><br/>
 								{{ annonce.description | slice(0,350) }}... <a href="{{ path('m2l_annonces_view', { 'id' : annonce.id }) }}">Voir plus</a>
 							</p>
