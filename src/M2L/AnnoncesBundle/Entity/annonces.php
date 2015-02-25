@@ -212,7 +212,7 @@ class annonces
         return $this->user;
     }
 
-    public function setLigue(Advert $ligue)
+    public function setLigue(Ligue $ligue)
     {
         $this->ligue = $ligue;
 

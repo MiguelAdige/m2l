@@ -17,8 +17,13 @@ class annoncesType extends AbstractType
         $builder
             ->add('titre', 'text')
             ->add('description', 'textarea')
-            ->add('online', 'checkbox')
             ->add('sport', 'text')
+            ->add('ligue', 'entity', array(
+                  'class'    => 'M2LLigueBundle:ligue',
+                  'property' => 'nom',
+                  'multiple' => false
+            ))
+            ->add('online', 'checkbox')
             ->add('save', 'submit')
         ;
     }
