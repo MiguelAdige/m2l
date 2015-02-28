@@ -233,9 +233,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // m2l_profil_edit
-        if ($pathinfo === '/profil/edit') {
-            return array (  '_controller' => 'M2L\\UserBundle\\Controller\\UserController::editAction',  '_route' => 'm2l_profil_edit',);
+        if (0 === strpos($pathinfo, '/profil')) {
+            // m2l_profil_edit
+            if ($pathinfo === '/profil/edit') {
+                return array (  '_controller' => 'M2L\\UserBundle\\Controller\\UserController::editAction',  '_route' => 'm2l_profil_edit',);
+            }
+
+            // m2l_profil_view
+            if (preg_match('#^/profil/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'm2l_profil_view')), array (  '_controller' => 'M2L\\UserBundle\\Controller\\UserController::viewAction',));
+            }
+
         }
 
         // _welcome

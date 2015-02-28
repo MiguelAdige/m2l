@@ -3,30 +3,34 @@
 {% block body %}
 	<h2>Liste de mes annonces postées</h2>
 	<ul id="annonces-liste">
-		<li>
-			<table>
-				<tr>
-					<td class="img-user">
-						<img src="#" alt="Avatar de l'utilisateur"><br/>
-						<span class="pseudo-utilisateur">Nom de l'utilisateur</span>
-					</td>
-					<td class="annonce-preview">
-						<h3><a href="{{ path('m2l_annonces_view', { 'id' : 1 }) }}">Titre annonce</a></h3>
-						<p>
-							<span>Sport</span><br/>
-							<span>Description :</span><br/>
-							Description abrégée de la recherche de partenaire... <a href="{{ path('m2l_annonces_view', { 'id' : 1 }) }}">Voir plus</a>
-						</p>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" class="annonce-date">
-						<span>
-							JJ/MM/AAAA à H:i:s
-						</span>
-					</td>
-				</tr>
-			</table>
-		</ii>
+		{% for annonce in listeAnnonces | reverse %}
+			<li>
+				<table>
+					<tr>
+						<td class="img-user">
+							<img src="http://openclassrooms.com/bundles/common/images/avatar_defaut.png?1e6e75ff4w32b" alt="Avatar de l'utilisateur"><br/>
+							<span class="pseudo-utilisateur">
+								{{ annonce.user.username }}
+							</span>
+						</td>
+						<td class="annonce-preview">
+							<h3><a href="{{ path('m2l_annonces_view', { 'id' : annonce.id }) }}">{{ annonce.titre }}</a></h3>
+							<p>
+								<span>{{ annonce.ligue.nom }}</span><br/>
+								<span>Description :</span><br/>
+								{{ annonce.description | slice(0,350) }}... <a href="{{ path('m2l_annonces_view', { 'id' : annonce.id }) }}">Voir plus</a>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" class="annonce-date">
+							<span>
+								{{ annonce.date | date("d/m/Y") }}
+							</span>
+						</td>
+					</tr>
+				</table>
+			</ii>
+		{% endfor %}
 	<ul>
 {% endblock %}

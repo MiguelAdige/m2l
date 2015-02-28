@@ -9,7 +9,9 @@
 						<td class="img-user">
 							<img src="http://openclassrooms.com/bundles/common/images/avatar_defaut.png?1e6e75ff4w32b" alt="Avatar de l'utilisateur"><br/>
 							<span class="pseudo-utilisateur">
-								{{ annonce.user.username }}
+								<a href="{{ path('m2l_profil_view', {'id': annonce.user.id}) }}">
+									{{ annonce.user.username }}
+								</a>
 							</span>
 						</td>
 						<td class="annonce-preview">

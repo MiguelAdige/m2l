@@ -68,7 +68,15 @@ class AnnoncesController extends Controller {
 
 	public function userAnnoncesAction() {
 
-		return $this->render("M2LAnnoncesBundle:Annonces:userAnnonces.html.twig", array());
+		$user = $this->getUser();
+		$em = $this->getDoctrine()->getManager();
+
+		$listeAnnonces = $em->getRepository("M2LAnnoncesBundle:annonces")->findBy(array("user"	=>	$user));
+
+		return $this->render("M2LAnnoncesBundle:Annonces:userAnnonces.html.twig", array(
+			"listeAnnonces"	=>	$listeAnnonces,
+			"user"			=>	$user
+			));
 
 	}
 

@@ -70,7 +70,27 @@ class UserController extends Controller
     }
 
     public function editAction() {
-        return $this->render("M2LUserBundle:User:editProfil.html.twig");
+        $user = $this->getUser();
+
+        if ($user != null) {
+            $form = $this->get('form.factory')->create(new UserType(), $user);
+
+            return $this->render("M2LUserBundle:User:editProfil.html.twig", array(
+                "form"  =>  $form->createView(),
+                "user"      =>  $user
+                ));
+        } else {
+            return $this->redirect($this->generateUrl("login"));
+        }
+    }
+
+    public function viewAction($id) {
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $em->getRepository("M2LUserBundle:User")->find($id);
+        return $this->render("M2LUserBundle:User:viewProfil.html.twig", array(
+            "user"      =>  $user
+            ));
     }
     
 }
