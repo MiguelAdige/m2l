@@ -50,6 +50,18 @@ class AnnoncesController extends Controller {
 		$form = $this->get("form.factory")->create(new annoncesType(), $annonce);
 
 		if ($user != null) {
+			if ($request->isMethod("POST")) {
+				if ($form->handleRequest($request)) {
+
+					$em = $this->getDoctrine()->getManager();
+					$em->persist($annonce);
+					$em->flush();
+
+					return $this->redirect($this->generateUrl("m2l_annonces_view", array(
+						"id"	=>	$annonce->getId()
+						)));
+				}
+			}
 			return $this->render("M2LAnnoncesBundle:Annonces:addAnnonce.html.twig", array(
 				"form"	=>	$form->createView()
 				));			
@@ -57,18 +69,6 @@ class AnnoncesController extends Controller {
 			return $this->redirect($this->generateUrl("login"));
 		}
 
-		if ($request->isMethod("POST")) {
-			if ($form->handleRequest($request)) {
-
-				$em = $this->getDoctrine()->getManager();
-				$em->persist($annonce);
-				$em->flush();
-
-				return $this->redirect($this->generateUrl("m2l_annonces_view", array(
-					"id"	=>	$annonce->getId()
-					)));
-			}
-		}
 	}
 
 	public function userAnnoncesAction() {
