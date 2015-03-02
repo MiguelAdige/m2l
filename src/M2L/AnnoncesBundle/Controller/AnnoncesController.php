@@ -45,19 +45,24 @@ class AnnoncesController extends Controller {
 
 	public function addAction(Request $request) {
 		$annonce = new Annonces();
+		$user = $this->getUser();
 
 		$form = $this->get("form.factory")->create(new annoncesType(), $annonce);
 
-		if ($request->isMethod("POST")) {
-			if ($form->handleRequest($request)) {
+		if ($user != null) {
+			if ($request->isMethod("POST")) {
+				if ($form->handleRequest($request)) {
 
-				$em = $this->getDoctrine()->getManager();
-				$em->persist($annonce);
-				$em->flush();
+					$em = $this->getDoctrine()->getManager();
+					$em->persist($annonce);
+					$em->flush();
 
-				return $this->redirect($this->generateUrl("m2l_annonces_view", array(
-					"id"	=>	$annonce->getId()
-					)));
+					return $this->redirect($this->generateUrl("m2l_annonces_view", array(
+						"id"	=>	$annonce->getId()
+						)));
+				}
+			} else {
+				return $this->redirect($this->generateUrl("login"));
 			}
 		}
 
@@ -69,14 +74,20 @@ class AnnoncesController extends Controller {
 	public function userAnnoncesAction() {
 
 		$user = $this->getUser();
-		$em = $this->getDoctrine()->getManager();
 
-		$listeAnnonces = $em->getRepository("M2LAnnoncesBundle:annonces")->findBy(array("user"	=>	$user));
+		if ($user != null) {
 
-		return $this->render("M2LAnnoncesBundle:Annonces:userAnnonces.html.twig", array(
-			"listeAnnonces"	=>	$listeAnnonces,
-			"user"			=>	$user
-			));
+			$em = $this->getDoctrine()->getManager();
+         	$listeAnnonces = $em->getRepository("M2LAnnoncesBundle:annonces")->findBy(array("user"	=>	$user));
+
+			return $this->render("M2LAnnoncesBundle:Annonces:userAnnonces.html.twig", array(
+				"listeAnnonces"	=>	$listeAnnonces,
+				"user"			=>	$user
+				));
+
+        } else {
+            return $this->redirect($this->generateUrl("login"));
+        }
 
 	}
 
