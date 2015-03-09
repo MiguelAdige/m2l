@@ -24,7 +24,7 @@ security:
 
         main:
             pattern:   ^/
-            anonymous: true
+            anonymous: ~
             switch_user: true
             provider:  main
 
@@ -44,3 +44,5 @@ security:
     access_control:
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        
+        - { path: ^/, roles: ROLE_USER }

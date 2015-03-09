@@ -11,7 +11,8 @@ class MessagerieController extends Controller
 {
     public function indexAction($boite)
     {
-        if (true === $this->get('security.context')->isGranted('ROLE_USER')) {
+        $user = $this->getUser();
+        if ($user != null) {
             return $this->redirect($this->generateUrl('m2l_ligue_homepage'));
         }
 
@@ -36,8 +37,8 @@ class MessagerieController extends Controller
 
     public function NewMessageAction(Request $request)
     {
-
-        if (true === $this->get('security.context')->isGranted('ROLE_USER')) {
+        $user = $this->getUser();
+        if ($user != null) {
             return $this->redirect($this->generateUrl('m2l_ligue_homepage'));
         }
 
@@ -68,7 +69,8 @@ class MessagerieController extends Controller
 
     public function NewMessageUserAction(Request $request, $user)
     {
-        if (true === $this->get('security.context')->isGranted('ROLE_USER')) {
+        $user = $this->getUser();
+        if ($user != null) {
             return $this->redirect($this->generateUrl('m2l_ligue_homepage'));
         }
 
@@ -99,10 +101,11 @@ class MessagerieController extends Controller
 
     public function viewAction($id)
     {
-        if (true === $this->get('security.context')->isGranted('ROLE_USER')) {
+        $user = $this->getUser();
+        if ($user != null) {
             return $this->redirect($this->generateUrl('m2l_ligue_homepage'));
         }
-        
+
     	$doctrine = $this->getDoctrine();
     	$em = $doctrine->getManager();
 
