@@ -69,11 +69,22 @@ class UserController extends Controller
         return $this->render('M2LUserBundle:User:inscription.html.twig', array('form' => $form->createView()));
     }
 
-    public function editAction() {
+    public function editAction(Request $request) {
         $user = $this->getUser();
-
+        $form = $this->get('form.factory')->create(new UserType(), $user);
+        
         if ($user != null) {
-            $form = $this->get('form.factory')->create(new UserType(), $user);
+			if ($request->isMethod("POST")) {
+				if ($form->handleRequest($request)) {
+					$users = new User();
+					$em = $this->getDoctrine()->getManager();
+					$users = $em->getRepository("M2LUserBundle:User")->find($user);
+					$em->persist($users);
+					$em->flush();
+
+					return $this->redirect($this->generateUrl("m2l_profil_edit", array()));
+				}
+			}
 
             return $this->render("M2LUserBundle:User:editProfil.html.twig", array(
                 "form"  =>  $form->createView(),

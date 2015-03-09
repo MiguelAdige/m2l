@@ -11,8 +11,8 @@
 			<tr>
 				<td class="img-user">
 					<div>
-						<span class="pseudo-utilisateur"><a href="{{ path('m2l_profil_view', {'id': user.id}) }}">{{ user.username }}</a></span><br/>
-						<img src="http://localhost/m2l/web/img/avatar.png" alt="Avatar de l'utilisateur">
+						<img src="http://localhost/m2l/web/img/avatar.png" alt="Avatar de l'utilisateur"><br/>
+						<span class="pseudo-utilisateur"><a href="{{ path('m2l_profil_view', {'id': user.id}) }}">{{ user.username }}</a></span>
 					</div>
 				</td>
 				<td>
@@ -24,7 +24,7 @@
 							{{ annonce.description }}
 						</p>
 						<p>
-							<a href="#">Envoyer un message</a>
+							<a href="{{ path('messagerie_new_msg_user', {'user': user.id}) }}">Envoyer un message</a>
 						</p>
 					</div>
 				</td>

@@ -52,7 +52,7 @@ class AnnoncesController extends Controller {
 		if ($user != null) {
 			if ($request->isMethod("POST")) {
 				if ($form->handleRequest($request)) {
-
+					$annonce->setUser($user);
 					$em = $this->getDoctrine()->getManager();
 					$em->persist($annonce);
 					$em->flush();

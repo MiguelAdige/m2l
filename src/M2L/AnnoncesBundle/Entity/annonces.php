@@ -3,7 +3,7 @@
 namespace M2L\AnnoncesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use M2L\UserBundle\Entity\user;
+use M2L\UserBundle\Entity\User as User;
 use M2L\LigueBundle\Entity\ligue;
 
 /**
@@ -200,7 +200,7 @@ class annonces
         return $this->sport;
     }
 
-    public function setUser(Advert $user)
+    public function setUser(User $user)
     {
         $this->user = $user;
 
