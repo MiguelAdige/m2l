@@ -20,6 +20,10 @@ class UserController extends Controller
     	$request = $this->getRequest();
         $session = $request->getSession();
 
+        if (true === $this->get('security.context')->isGranted('ROLE_USER')) {
+            return $this->redirect($this->generateUrl('m2l_ligue_homepage'));
+        }
+
         if($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)){
             $this->get('session')->getFlashBag()->add(
                 'notice',
