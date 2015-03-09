@@ -11,8 +11,7 @@ class MessagerieController extends Controller
 {
     public function indexAction($boite)
     {
-        $user = $this->getUser();
-        if ($user != null) {
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->redirect($this->generateUrl('m2l_ligue_homepage'));
         }
 
@@ -37,8 +36,7 @@ class MessagerieController extends Controller
 
     public function NewMessageAction(Request $request)
     {
-        $user = $this->getUser();
-        if ($user != null) {
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->redirect($this->generateUrl('m2l_ligue_homepage'));
         }
 
@@ -69,8 +67,7 @@ class MessagerieController extends Controller
 
     public function NewMessageUserAction(Request $request, $user)
     {
-        $user = $this->getUser();
-        if ($user != null) {
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->redirect($this->generateUrl('m2l_ligue_homepage'));
         }
 
@@ -101,8 +98,7 @@ class MessagerieController extends Controller
 
     public function viewAction($id)
     {
-        $user = $this->getUser();
-        if ($user != null) {
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->redirect($this->generateUrl('m2l_ligue_homepage'));
         }
 

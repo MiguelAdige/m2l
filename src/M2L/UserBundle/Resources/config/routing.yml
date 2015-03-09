@@ -9,6 +9,9 @@ login:
 login_check:
     pattern:   /login_check
 
+logout:
+    pattern:   /logout
+
 m2l_profil_edit:
     path:    /profil/edit
     defaults: { _controller: M2LUserBundle:User:edit }

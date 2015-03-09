@@ -18,14 +18,17 @@
                 <ul id="menu">
                     <li><a href="{{ path('m2l_ligue_homepage') }}">Accueil</a></li>
                     <li><a href="{{ path('m2l_annonces_home') }}">Recherche de partenaire</a></li>
-                    
+                    {% if is_granted('ROLE_USER') == false %}
                     <li><a href="{{ path('m2l_inscription') }}">Inscription</a></li>
-                    <li><a href="{{ path('login') }}">Connexion</a></li>
                     
+                    <li><a href="{{ path('login') }}">Connexion</a></li>
+                    {% endif %}
+                    {% if is_granted('ROLE_USER') %}
                     <li><a href="{{ path('m2l_annonces_add') }}">Ajouter une annonce</a></li>
                     <li><a href="{{ path('m2l_profil_edit') }}">Modifier mon profil</a></li>
                     <li><a href="{{ path('m2l_annonces_post') }}">Mes annonces</a></li>
-                    <li><a href="?p=logout">Déconnexion</a></li>
+                    <li><a href="{{ path('logout') }}">Déconnexion</a></li>
+                    {% endif %}
                     
                 </ul>
             </nav>
