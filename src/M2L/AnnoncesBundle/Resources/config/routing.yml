@@ -12,6 +12,12 @@ m2l_annonces_add:
     path: /anonnces/add
     defaults: { _controller: M2LAnnoncesBundle:Annonces:add }
 
+m2l_annonces_edit:
+    path: /annonces/edit/{id}
+    defaults: { _controller: M2LAnnoncesBundle:Annonces:edit }
+    requirements:
+        id: \d+
+
 m2l_annonces_post:
     path: /annonces/mes-annonces
     defaults: { _controller: M2LAnnoncesBundle:Annonces:userAnnonces }

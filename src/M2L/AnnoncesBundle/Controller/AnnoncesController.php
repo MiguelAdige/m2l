@@ -25,6 +25,11 @@ class AnnoncesController extends Controller {
 	}
 
 	public function viewAction($id) {
+
+		if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirect($this->generateUrl("login"));
+        }
+
 		$em = $this->getDoctrine()->getManager();
 
 		$annonce = $em->getRepository("M2LAnnoncesBundle:annonces")->find($id);
@@ -44,6 +49,11 @@ class AnnoncesController extends Controller {
 	}
 
 	public function addAction(Request $request) {
+
+		if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirect($this->generateUrl("login"));
+        }
+
 		$annonce = new Annonces();
 		$user = $this->getUser();
 
@@ -65,13 +75,44 @@ class AnnoncesController extends Controller {
 			return $this->render("M2LAnnoncesBundle:Annonces:addAnnonce.html.twig", array(
 				"form"	=>	$form->createView()
 				));			
-		} else {
-			return $this->redirect($this->generateUrl("login"));
 		}
 
 	}
 
+	public function editAction($id, Request $request) {
+
+		if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirect($this->generateUrl("login"));
+        }
+
+		$annonce = new Annonces();
+		$em = $this->getDoctrine()->getManager();
+		$myAnnonce =  $em->getRepository("M2LAnnoncesBundle:Annonces")->find($id);;
+		$user = $this->getUser();
+
+		$form = $this->get("form.factory")->create(new annoncesType(), $myAnnonce);
+
+		if ($request->isMethod("POST")) {
+			if ($form->handleRequest($request)) {
+				$annonce->setUser($user);
+				$em->persist($myAnnonce);
+				$em->flush();
+
+				return $this->redirect($this->generateUrl("m2l_annonces_view", array(
+					"id"	=>	$id
+					)));
+			}
+		}
+		return $this->render("M2LAnnoncesBundle:Annonces:editAnnonce.html.twig", array(
+			"form"	=>	$form->createView()
+			));			
+
+	}
+
 	public function userAnnoncesAction() {
+		if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirect($this->generateUrl("login"));
+        }
 
 		$user = $this->getUser();
 
@@ -85,8 +126,6 @@ class AnnoncesController extends Controller {
 				"user"			=>	$user
 				));
 
-        } else {
-            return $this->redirect($this->generateUrl("login"));
         }
 
 	}

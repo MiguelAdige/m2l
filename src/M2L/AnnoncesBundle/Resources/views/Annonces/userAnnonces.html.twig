@@ -11,11 +11,19 @@
 							<img src="http://openclassrooms.com/bundles/common/images/avatar_defaut.png?1e6e75ff4w32b" alt="Avatar de l'utilisateur"><br/>
 							<span class="pseudo-utilisateur">
 								{{ annonce.user.username }}
+							</span><br/>
+							<span>
+								<a href="{{ path('m2l_annonces_edit', { 'id' : annonce.id }) }}">Modifier l'annonce</a>
 							</span>
 						</td>
 						<td class="annonce-preview">
 							<h3><a href="{{ path('m2l_annonces_view', { 'id' : annonce.id }) }}">{{ annonce.titre }}</a></h3>
 							<p>
+								{% if annonce.online != 1 %}
+									<span>Désactivée</span><br/>
+								{% else %}
+									<span>Active</span><br/>
+								{% endif %}
 								<span>{{ annonce.ligue.nom }}</span><br/>
 								<span>Description :</span><br/>
 								{{ annonce.description | slice(0,350) }}... <a href="{{ path('m2l_annonces_view', { 'id' : annonce.id }) }}">Voir plus</a>

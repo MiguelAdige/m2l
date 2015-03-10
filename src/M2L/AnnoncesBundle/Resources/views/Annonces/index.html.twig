@@ -3,35 +3,37 @@
 {% block body %}
 	<ul id="annonces-liste">
 		{% for annonce in listeAnnonces | reverse %}
-			<li>
-				<table>
-					<tr>
-						<td class="img-user">
-							<img src="http://localhost/m2l/web/img/avatar.png" alt="Avatar de l'utilisateur"><br/>
-							<span class="pseudo-utilisateur">
-								<a href="{{ path('m2l_profil_view', {'id': annonce.user.id}) }}">
-									{{ annonce.user.username }}
-								</a>
-							</span>
-						</td>
-						<td class="annonce-preview">
-							<h3><a href="{{ path('m2l_annonces_view', { 'id' : annonce.id }) }}">{{ annonce.titre }}</a></h3>
-							<p>
-								<span>{{ annonce.ligue.nom }}</span><br/>
-								<span>Description :</span><br/>
-								{{ annonce.description | slice(0,350) }}... <a href="{{ path('m2l_annonces_view', { 'id' : annonce.id }) }}">Voir plus</a>
-							</p>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2" class="annonce-date">
-							<span>
-								{{ annonce.date | date("d/m/Y") }}
-							</span>
-						</td>
-					</tr>
-				</table>
-			</ii>
+			{% if annonce.online == 1 %}
+				<li>
+					<table>
+						<tr>
+							<td class="img-user">
+								<img src="http://localhost/m2l/web/img/avatar.png" alt="Avatar de l'utilisateur"><br/>
+								<span class="pseudo-utilisateur">
+									<a href="{{ path('m2l_profil_view', {'id': annonce.user.id}) }}">
+										{{ annonce.user.username }}
+									</a>
+								</span>
+							</td>
+							<td class="annonce-preview">
+								<h3><a href="{{ path('m2l_annonces_view', { 'id' : annonce.id }) }}">{{ annonce.titre }}</a></h3>
+								<p>
+									<span>{{ annonce.ligue.nom }}</span><br/>
+									<span>Description :</span><br/>
+									{{ annonce.description | slice(0,350) }}... <a href="{{ path('m2l_annonces_view', { 'id' : annonce.id }) }}">Voir plus</a>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="annonce-date">
+								<span>
+									{{ annonce.date | date("d/m/Y") }}
+								</span>
+							</td>
+						</tr>
+					</table>
+				</ii>
+			{% endif %}
 		{% endfor %}
 	</ul>
 {% endblock %}
