@@ -2,9 +2,9 @@
 
 {% block body %}
    <h2>Messagerie</h2>
-   <a href="{{ path('messagerie_new_msg') }}">Nouveau message</a>
+   <a class="black" href="{{ path('messagerie_new_msg') }}">Nouveau message</a>
    <hr />
-   <a href="{{ path('messagerie_inbox') }}">Boite de réception</a> | <a href="{{ path('messagerie_send') }}">Envoyé</a> 
+   <a class="black" href="{{ path('messagerie_inbox') }}">Boite de réception</a> | <a class="black"  href="{{ path('messagerie_send') }}">Envoyé</a> 
    <hr />
 
    {% for flashMessage in app.session.flashbag.get('notice') %}

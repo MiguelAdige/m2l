@@ -29,6 +29,9 @@ a:hover{
 	color: #B1B1B1;
 	transition: color .5s;
 }
+.black{
+	color: #000;
+}
 
 /* Style page inscription */
 .error{
@@ -37,6 +40,7 @@ a:hover{
 	padding: 10px;
 	color: white;
 	border-radius: 3px;
+	text-align: center;
 }
 .succes{
 	margin: 5px 0 5px 0;
@@ -44,6 +48,7 @@ a:hover{
 	background: green;
 	color: white;
 	border-radius: 3px;
+	text-align: center;
 }
 
 .inscription, .edit-profil {

@@ -2,16 +2,16 @@
 
 {% block body %}
    <h2>Messagerie</h2>
-   <a href="{{ path('messagerie_new_msg') }}">Nouveau message</a>
+  {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="succes">
+                    <span>{{ flashMessage }}</span>
+                    <div class="clear"></div>
+                </div>
+            {% endfor %}
+   <a class="black" href="{{ path('messagerie_new_msg') }}">Nouveau message</a>
    <hr />
-   <a href="{{ path('messagerie_inbox') }}">Boite de réception</a> | <a href="{{ path('messagerie_send') }}">Envoyé</a> 
+   <a class="black" href="{{ path('messagerie_inbox') }}">Boite de réception</a> | <a class="black" href="{{ path('messagerie_send') }}">Envoyé</a> 
    <hr />
-
-   {% for flashMessage in app.session.flashbag.get('notice') %}
-
-	    {{ flashMessage }}
-
-	{% endfor %}
 
    <table border="1">
    	<tr>

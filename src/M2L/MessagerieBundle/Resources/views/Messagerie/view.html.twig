@@ -2,7 +2,8 @@
 
 {% block body %}
    <h2>Messagerie</h2>
-   <a href="{{ path('messagerie_new_msg_user', { "user": msg.expediteur }) }}">Répondre</a> | <a href="{{ path('messagerie_delete', { "id":msg.id }) }}">Supprimer</a>
+   <a class="black" href="{{ path('messagerie_homepage') }}">Retour à la messagerie</a> | 
+   <a class="black" href="{{ path('messagerie_new_msg_user', { "user": msg.expediteur }) }}">Répondre</a> | <a class="black" href="{{ path('messagerie_delete', { "id":msg.id }) }}">Supprimer</a>
    <hr />
 
    {{ msg.msg }}

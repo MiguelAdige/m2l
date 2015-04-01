@@ -53,13 +53,11 @@ class MessagerieController extends Controller
     		$doctrine = $this->getDoctrine();
     		$em = $doctrine->getManager();
     		$em->persist($messagerie);
+            $em->flush();
+            $this->get('session')->getFlashBag()->add('notice', 'Message envoyé');
 
-    		if($em->flush())
-    		{
-    			$this->get('session')->getFlashBag()->add('notice', 'Message envoyé');
-    		}
 
-    		return $this->redirect($this->generateUrl("messagerie_homepage"));
+    		return $this->redirect($this->generateUrl("messagerie_send"));
     	}
 
     	return $this->render('MessagerieBundle:Messagerie:form.html.twig', array('form'	=> $form->createView()));
@@ -85,12 +83,11 @@ class MessagerieController extends Controller
     		$messagerie->setExpedie($userSession->getUsername());
     		$messagerie->setExpediteur($userSession->getUsername());
 
-    		if($em->flush())
-    		{
-    			$this->get('session')->getFlashBag()->add('notice', 'Message envoyé');
-    		}
+            $em->flush();
+            $this->get('session')->getFlashBag()->add('notice', 'Message envoyé');
 
-    		return $this->redirect($this->generateUrl("messagerie_homepage"));
+
+    		return $this->redirect($this->generateUrl("messagerie_send"));
     	}
 
     	return $this->render('MessagerieBundle:Messagerie:form.html.twig', array('form'	=> $form->createView()));
@@ -108,6 +105,15 @@ class MessagerieController extends Controller
 
     	$repo = $em->getRepository('MessagerieBundle:Messagerie');
     	$Msg = $repo->findOneById(array('id' => $id));
+
+        // On vérifie d'abord que c'est bien le destinataire avant de modifier le champ
+        $user = $this->get('security.context')->getToken()->getUser();
+
+        if ($Msg->getDestinataire() == $user->getUsername()) {
+            $Msg->setLu(1);
+            $em->persist($Msg);
+            $em->flush();
+        }
 
     	return $this->render('MessagerieBundle:Messagerie:view.html.twig', array("msg" => $Msg));
     }
