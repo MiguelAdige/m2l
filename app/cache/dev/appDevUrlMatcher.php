@@ -208,9 +208,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'M2L\\AnnoncesBundle\\Controller\\AnnoncesController::addAction',  '_route' => 'm2l_annonces_add',);
             }
 
-            // m2l_annonces_post
-            if ($pathinfo === '/annonces/mes-annonces') {
-                return array (  '_controller' => 'M2L\\AnnoncesBundle\\Controller\\AnnoncesController::userAnnoncesAction',  '_route' => 'm2l_annonces_post',);
+            if (0 === strpos($pathinfo, '/annonces')) {
+                // m2l_annonces_edit
+                if (0 === strpos($pathinfo, '/annonces/edit') && preg_match('#^/annonces/edit/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'm2l_annonces_edit')), array (  '_controller' => 'M2L\\AnnoncesBundle\\Controller\\AnnoncesController::editAction',));
+                }
+
+                // m2l_annonces_post
+                if ($pathinfo === '/annonces/mes-annonces') {
+                    return array (  '_controller' => 'M2L\\AnnoncesBundle\\Controller\\AnnoncesController::userAnnoncesAction',  '_route' => 'm2l_annonces_post',);
+                }
+
             }
 
         }
@@ -220,15 +228,23 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'M2L\\UserBundle\\Controller\\UserController::inscriptionAction',  '_route' => 'm2l_inscription',);
         }
 
-        if (0 === strpos($pathinfo, '/login')) {
-            // login
-            if ($pathinfo === '/login') {
-                return array (  '_controller' => 'M2L\\UserBundle\\Controller\\UserController::loginAction',  '_route' => 'login',);
+        if (0 === strpos($pathinfo, '/log')) {
+            if (0 === strpos($pathinfo, '/login')) {
+                // login
+                if ($pathinfo === '/login') {
+                    return array (  '_controller' => 'M2L\\UserBundle\\Controller\\UserController::loginAction',  '_route' => 'login',);
+                }
+
+                // login_check
+                if ($pathinfo === '/login_check') {
+                    return array('_route' => 'login_check');
+                }
+
             }
 
-            // login_check
-            if ($pathinfo === '/login_check') {
-                return array('_route' => 'login_check');
+            // logout
+            if ($pathinfo === '/logout') {
+                return array('_route' => 'logout');
             }
 
         }
